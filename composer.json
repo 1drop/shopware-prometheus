@@ -1,0 +1,22 @@
+{
+    "name": "onedrop/shopware-prometheus",
+    "description": "Expose Prometheus metrics for Shopware through API endpoint",
+    "license": "MIT",
+    "type": "shopware-plugin",
+    "extra": {
+        "installer-name": "OdPrometheus"
+    },
+    "authors": [
+        {
+            "name": "Hans Höchtl",
+            "email": "hhoechtl@1drop.de"
+        }
+    ],
+    "require": {
+        "jimdo/prometheus_client_php": "0.9.*",
+        "composer/installers": "~1.6"
+    },
+    "scripts": {
+        "test": "phpunit -c tests/"
+    }
+}

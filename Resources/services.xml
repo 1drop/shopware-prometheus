@@ -1,0 +1,32 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Registry -->
+        <service id="od_prometheus.registry_adapter" class="Prometheus\Storage\InMemory">
+
+        </service>
+        <service id="od_prometheus.registry" class="Prometheus\CollectorRegistry">
+            <argument type="service" id="od_prometheus.registry_adapter"/>
+        </service>
+
+        <!-- Subscriber -->
+        <service id="od_prometheus.subscriber.api_controller" class="OdPrometheus\Subscriber\ApiController">
+            <argument>%od_prometheus.plugin_dir%</argument>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+        <service id="od_prometheus.subscriber.library" class="OdPrometheus\Subscriber\Library">
+            <argument>%od_prometheus.plugin_dir%</argument>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+        <!-- Metrics -->
+        <service id="od_prometheus.metrics.cronjobs" class="OdPrometheus\Metrics\Cronjobs">
+            <argument type="service" id="od_prometheus.registry"/>
+            <argument type="service" id="cron_adapter"/>
+            <tag name="od_prometheus.metric"/>
+        </service>
+
+    </services>
+</container>
