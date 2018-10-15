@@ -130,7 +130,7 @@ class Counter implements PrometheusMetricInterface
     {
         $noOfUsers = $this->db->executeQuery('SELECT COUNT(*) FROM s_user')->fetchColumn();
         // Note: always use shopware as namespace, so ops can distinguish the namespace properly
-        $counter = $this->registry->registerCounter('shopware', 'noOfUsers', 'Number of users in database', ['user']);
+        $counter = $this->registry->registerCounter('shopware', 'noOfUsers', 'Number of users in database');
         $counter->incBy($noOfUsers);
     }
 }
