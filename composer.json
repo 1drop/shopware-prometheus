@@ -4,7 +4,7 @@
     "license": "MIT",
     "type": "shopware-plugin",
     "extra": {
-        "installer-name": "OdPrometheus"
+        "installer-name": "OdsPrometheus"
     },
     "authors": [
         {

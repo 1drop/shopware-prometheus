@@ -5,9 +5,9 @@
  *  (c) 2018 Hans Hoechtl <hhoechtl@1drop.de>
  *  All rights reserved
  ***************************************************************/
-namespace OdPrometheus\Compiler;
+namespace OdsPrometheus\Compiler;
 
-use OdPrometheus\Metrics\PrometheusMetricInterface;
+use OdsPrometheus\Metrics\PrometheusMetricInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -22,7 +22,7 @@ class MetricsCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $metricServiceNames = [];
-        $metricServices = $container->findTaggedServiceIds('od_prometheus.metric');
+        $metricServices = $container->findTaggedServiceIds('ods_prometheus.metric');
         foreach ($metricServices as $id => $metricService) {
             $def = $container->getDefinition($id);
             if (!$def->isPublic()) {
@@ -39,6 +39,6 @@ class MetricsCompilerPass implements CompilerPassInterface
             }
             $metricServiceNames[] = $id;
         }
-        $container->setParameter('od_prometheus.metrics', $metricServiceNames);
+        $container->setParameter('ods_prometheus.metrics', $metricServiceNames);
     }
 }

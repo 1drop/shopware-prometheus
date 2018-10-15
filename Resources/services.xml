@@ -4,28 +4,28 @@
 
     <services>
         <!-- Registry -->
-        <service id="od_prometheus.registry_adapter" class="Prometheus\Storage\InMemory">
+        <service id="ods_prometheus.registry_adapter" class="Prometheus\Storage\InMemory">
 
         </service>
-        <service id="od_prometheus.registry" class="Prometheus\CollectorRegistry">
-            <argument type="service" id="od_prometheus.registry_adapter"/>
+        <service id="ods_prometheus.registry" class="Prometheus\CollectorRegistry">
+            <argument type="service" id="ods_prometheus.registry_adapter"/>
         </service>
 
         <!-- Subscriber -->
-        <service id="od_prometheus.subscriber.api_controller" class="OdPrometheus\Subscriber\ApiController">
-            <argument>%od_prometheus.plugin_dir%</argument>
+        <service id="ods_prometheus.subscriber.api_controller" class="OdsPrometheus\Subscriber\ApiController">
+            <argument>%ods_prometheus.plugin_dir%</argument>
             <tag name="shopware.event_subscriber"/>
         </service>
-        <service id="od_prometheus.subscriber.library" class="OdPrometheus\Subscriber\Library">
-            <argument>%od_prometheus.plugin_dir%</argument>
+        <service id="ods_prometheus.subscriber.library" class="OdsPrometheus\Subscriber\Library">
+            <argument>%ods_prometheus.plugin_dir%</argument>
             <tag name="shopware.event_subscriber"/>
         </service>
 
         <!-- Metrics -->
-        <service id="od_prometheus.metrics.cronjobs" class="OdPrometheus\Metrics\Cronjobs">
-            <argument type="service" id="od_prometheus.registry"/>
+        <service id="ods_prometheus.metrics.cronjobs" class="OdsPrometheus\Metrics\Cronjobs">
+            <argument type="service" id="ods_prometheus.registry"/>
             <argument type="service" id="cron_adapter"/>
-            <tag name="od_prometheus.metric"/>
+            <tag name="ods_prometheus.metric"/>
         </service>
 
     </services>

@@ -5,15 +5,15 @@
  *  (c) 2018 Hans Hoechtl <hhoechtl@1drop.de>
  *  All rights reserved
  ***************************************************************/
-namespace OdPrometheus;
+namespace OdsPrometheus;
 
-use OdPrometheus\Compiler\MetricsCompilerPass;
+use OdsPrometheus\Compiler\MetricsCompilerPass;
 use Shopware\Components\Plugin;
 use Shopware\Components\Plugin\Context\ActivateContext;
 use Shopware\Components\Plugin\Context\InstallContext;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class OdPrometheus extends Plugin
+class OdsPrometheus extends Plugin
 {
     /**
      * Cache must be cleared to recompile symfony services
@@ -26,7 +26,7 @@ class OdPrometheus extends Plugin
     }
 
     /**
-     * Collect all registered services by tag od_prometheus.metric
+     * Collect all registered services by tag ods_prometheus.metric
      * and write them as container parameter array for later iteration.
      *
      * @param ContainerBuilder $container

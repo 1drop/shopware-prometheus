@@ -1,6 +1,6 @@
 <?php
 
-use OdPrometheus\Metrics\PrometheusMetricInterface;
+use OdsPrometheus\Metrics\PrometheusMetricInterface;
 use Prometheus\RenderTextFormat;
 
 /***************************************************************
@@ -23,7 +23,7 @@ class Shopware_Controllers_Api_Metrics extends Shopware_Controllers_Api_Rest
      */
     public function init()
     {
-        $this->registry = Shopware()->Container()->get('od_prometheus.registry');
+        $this->registry = Shopware()->Container()->get('ods_prometheus.registry');
     }
 
     /**
@@ -32,7 +32,7 @@ class Shopware_Controllers_Api_Metrics extends Shopware_Controllers_Api_Rest
     public function indexAction()
     {
         /** @var array $registeredMetricServices */
-        $registeredMetricServices = Shopware()->Container()->getParameter('od_prometheus.metrics');
+        $registeredMetricServices = Shopware()->Container()->getParameter('ods_prometheus.metrics');
         foreach ($registeredMetricServices as $registeredMetricService) {
             /** @var PrometheusMetricInterface $metric */
             $metric = Shopware()->Container()->get($registeredMetricService);

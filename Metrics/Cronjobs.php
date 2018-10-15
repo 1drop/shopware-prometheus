@@ -5,7 +5,7 @@
  *  (c) 2018 Hans Hoechtl <hhoechtl@1drop.de>
  *  All rights reserved
  ***************************************************************/
-namespace OdPrometheus\Metrics;
+namespace OdsPrometheus\Metrics;
 
 use Enlight_Components_Cron_Adapter;
 use Prometheus\CollectorRegistry;

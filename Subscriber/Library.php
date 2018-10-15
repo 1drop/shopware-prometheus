@@ -5,7 +5,7 @@
  *  (c) 2018 Hans Hoechtl <hhoechtl@1drop.de>
  *  All rights reserved
  ***************************************************************/
-namespace OdPrometheus\Subscriber;
+namespace OdsPrometheus\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 

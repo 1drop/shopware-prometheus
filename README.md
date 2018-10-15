@@ -1,4 +1,4 @@
-# OdPrometheus plugin for Shopware
+# OdsPrometheus plugin for Shopware
 
 ## What is Prometheus
 [Prometheus](https://prometheus.io) is a modern monitoring platform. You can collect metrics through the HTTP protocol using
@@ -73,25 +73,25 @@ static_configs:
 
 To add your custom metric you can write or own plugin and register a new metric e.g. like that:
 
-Build a new service that registers the tag `od_prometheus.metric` and use whatever other service you 
+Build a new service that registers the tag `ods_prometheus.metric` and use whatever other service you
 need to collect your data (e.g. database):
 
 ```xml
 <service id="my_plugin.metrics.counter" class="MyPlugin\Metrics\Counter">
-    <argument type="service" id="od_prometheus.registry"/>
+    <argument type="service" id="ods_prometheus.registry"/>
     <argument type="service" id="db"/>
-    <tag name="od_prometheus.metric"/>
+    <tag name="ods_prometheus.metric"/>
 </service>
 ```
 
-Write your metric service that implements `OdPrometheus\Metrics\PrometheusMetricInterface` that registers
+Write your metric service that implements `OdsPrometheus\Metrics\PrometheusMetricInterface` that registers
 counters, histograms, etc. (see https://github.com/Jimdo/prometheus_client_php for documentation and examples):
 
 ```php
 <?php
 namespace MyPlugin\Metrics;
 
-use OdPrometheus\Metrics\PrometheusMetricInterface;
+use OdsPrometheus\Metrics\PrometheusMetricInterface;
 use Prometheus\CollectorRegistry;
 
 class Counter implements PrometheusMetricInterface
@@ -119,7 +119,7 @@ class Counter implements PrometheusMetricInterface
 
     /**
      * Collect the metric data and add them to the registry
-     * service od_prometheus.registry
+     * service ods_prometheus.registry
      *
      * @return void
      * @throws \Prometheus\Exception\MetricsRegistrationException
@@ -139,7 +139,7 @@ class Counter implements PrometheusMetricInterface
 ## Installation
 
 ### Git Version
-* Checkout plugin in `/custom/plugins/OdPrometheus`
+* Checkout plugin in `/custom/plugins/OdsPrometheus`
 * Install the plugin with the "Plugin Manager"
 * Configure the plugin
 
