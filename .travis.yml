@@ -1,0 +1,23 @@
+language: php
+sudo: false
+cache:
+  directories:
+  - "$HOME/.composer/cache"
+php:
+- '7.0'
+install: true
+script:
+- mkdir -p /tmp/OdPrometheus
+- cp -R . /tmp/OdPrometheus/
+- composer install -ao --no-dev -d /tmp/OdPrometheus
+- cd /tmp
+- rm -rf OdPrometheus/.??*
+- zip -r OdPrometheus.zip OdPrometheus
+- cp OdPrometheus.zip $TRAVIS_BUILD_DIR
+deploy:
+  provider: releases
+  api_key:
+    secure: xs/O/xPEtlhzT9IpPwKzSnqsMA/xxPFOlF86SYZJZRpvik8ahrq7vyZ83nD99b1c/dBnmWr6ekBJQZwCWg6PUBprYwIf8EFdeV9Gf151SCWIjNXrKalivdo/6916/NRjDnmGJmY24JAR/IgKtKWI5gZFehTLktOcCtNQ+6/cE08He0vgq8XujksKBvkIxbD2cCERtxNMw5xmdd5BEG1WAzs57kXwPOQUjquiiELMDmM1WxocoyjNYko8od6oBb8FVKSzP/fk21dFAGYRd2yaPwqniQyMmZXKh2rBJG+qIB88gjUJDzJ8N09bFic6lj8zqkeRIYwMT5qGqokEHIerZdz6DnINYnyHvvR8cTjuOIdIyKWPSc2AdFK54dK+lsddSv0YsSHUOPuzMuLEQKCi6jh7HofYMAp3W2HReIA0XiaD5O6a9fMIMOkeloGDoEKbpar3i1oZHzLP1Bt2AdLo4P9yoJdpcjau516+KjysNJCMkfS6QjnscGwYJxXP0ZkUpgbZ+cIPv/STOgP8Y+0hb2yxcLCrynHxrLfuDmSWhV4vr4m6RYys+GR8x43kV3KAkMZqsTb77LgE+pAJZScS2/0yoFxgRb0q7g/hRECRYPKvTOXsQ/dZ6IGXz4JrS76DvQmeR0sG+0DaRp+LrR2/09HyQswwCO+RSNQJ9fCsr6Q=
+  file: OdPrometheus.zip
+  on:
+    repo: 1drop/shopware-prometheus

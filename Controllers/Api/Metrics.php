@@ -50,5 +50,4 @@ class Shopware_Controllers_Api_Metrics extends Shopware_Controllers_Api_Rest
         $this->Response()->setHeader('Content-type', RenderTextFormat::MIME_TYPE, true);
         $this->Response()->setBody($data);
     }
-
 }

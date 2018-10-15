@@ -5,9 +5,7 @@
  *  (c) 2018 Hans Hoechtl <hhoechtl@1drop.de>
  *  All rights reserved
  ***************************************************************/
-
 namespace OdPrometheus\Subscriber;
-
 
 use Enlight\Event\SubscriberInterface;
 
@@ -42,7 +40,7 @@ class ApiController implements SubscriberInterface
     }
 
     /**
-     * @param \Enlight_Event_EventArgs $args
+     * @param  \Enlight_Event_EventArgs $args
      * @return string
      * @noinspection PhpUnusedParameterInspection
      */

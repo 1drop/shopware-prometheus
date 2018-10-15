@@ -5,9 +5,7 @@
  *  (c) 2018 Hans Hoechtl <hhoechtl@1drop.de>
  *  All rights reserved
  ***************************************************************/
-
 namespace OdPrometheus\Compiler;
-
 
 use OdPrometheus\Metrics\PrometheusMetricInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -15,11 +13,10 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class MetricsCompilerPass implements CompilerPassInterface
 {
-
     /**
      * You can modify the container here before it is dumped to PHP code.
      *
-     * @param ContainerBuilder $container
+     * @param  ContainerBuilder     $container
      * @throws \ReflectionException
      */
     public function process(ContainerBuilder $container)

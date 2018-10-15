@@ -21,6 +21,38 @@ This plugin adds an API endpoint `/api/metrics` which exposes Prometheus metrics
 * Time since last order
 * Time since last user registered
 
+## Exposed metrics example
+
+```text
+# HELP shopware_cronjob_end Unix timestamp of the crons end value
+# TYPE shopware_cronjob_end counter
+shopware_cronjob_end{cron="Artikelbewertung per eMail"} 1536748562
+shopware_cronjob_end{cron="Aufräumen"} 1536748501
+shopware_cronjob_end{cron="Basket Signature cleanup"} 1536820501
+shopware_cronjob_end{cron="Customer Stream refresh"} 1536825620
+shopware_cronjob_end{cron="Geburtstagsgruß"} 1536788582
+shopware_cronjob_end{cron="HTTP Cache löschen"} 1536800401
+# HELP shopware_cronjob_next Unix timestamp of the crons next value
+# TYPE shopware_cronjob_next counter
+shopware_cronjob_next{cron="Artikelbewertung per eMail"} 1536834918
+shopware_cronjob_next{cron="Aufräumen"} 1536834878
+shopware_cronjob_next{cron="Basket Signature cleanup"} 1536906853
+shopware_cronjob_next{cron="Customer Stream refresh"} 1536832800
+shopware_cronjob_next{cron="Geburtstagsgruß"} 1536874978
+shopware_cronjob_next{cron="HTTP Cache löschen"} 1536886800
+# HELP shopware_cronjob_start Unix timestamp of the crons start value
+# TYPE shopware_cronjob_start counter
+shopware_cronjob_start{cron="Artikelbewertung per eMail"} 1536748562
+shopware_cronjob_start{cron="Aufräumen"} 1536748501
+shopware_cronjob_start{cron="Basket Signature cleanup"} 1536820501
+shopware_cronjob_start{cron="Customer Stream refresh"} 1536825602
+shopware_cronjob_start{cron="Geburtstagsgruß"} 1536788582
+shopware_cronjob_start{cron="HTTP Cache löschen"} 1536800401
+# HELP shopware_cronjobs_noOfActiveCrons Get the number of cronjobs marked as active in the database
+# TYPE shopware_cronjobs_noOfActiveCrons gauge
+shopware_cronjobs_noOfActiveCrons 31
+```
+
 ## Example Prometheus Scrape config
 
 ```yaml
@@ -37,7 +69,7 @@ static_configs:
 ```
 
 
-## Extendability
+## Extensibility
 
 To add your custom metric you can write or own plugin and register a new metric e.g. like that:
 
@@ -97,7 +129,8 @@ class Counter implements PrometheusMetricInterface
     public function collectMetric()
     {
         $noOfUsers = $this->db->executeQuery('SELECT COUNT(*) FROM s_user')->fetchColumn();
-        $counter = $this->registry->registerCounter('user', 'noOfUsers', 'Number of users in database');
+        // Note: always use shopware as namespace, so ops can distinguish the namespace properly
+        $counter = $this->registry->registerCounter('shopware', 'noOfUsers', 'Number of users in database', ['user']);
         $counter->incBy($noOfUsers);
     }
 }

@@ -5,9 +5,7 @@
  *  (c) 2018 Hans Hoechtl <hhoechtl@1drop.de>
  *  All rights reserved
  ***************************************************************/
-
 namespace OdPrometheus;
-
 
 use OdPrometheus\Compiler\MetricsCompilerPass;
 use Shopware\Components\Plugin;
@@ -17,7 +15,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class OdPrometheus extends Plugin
 {
-
     /**
      * Cache must be cleared to recompile symfony services
      *
@@ -39,5 +36,4 @@ class OdPrometheus extends Plugin
         parent::build($container);
         $container->addCompilerPass(new MetricsCompilerPass());
     }
-
 }

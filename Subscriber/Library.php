@@ -5,9 +5,7 @@
  *  (c) 2018 Hans Hoechtl <hhoechtl@1drop.de>
  *  All rights reserved
  ***************************************************************/
-
 namespace OdPrometheus\Subscriber;
-
 
 use Enlight\Event\SubscriberInterface;
 
@@ -37,7 +35,7 @@ class Library implements SubscriberInterface
     {
         return [
             'Enlight_Controller_Front_StartDispatch' => 'onStartDispatch',
-            'Shopware_Console_Add_Command' => 'onStartDispatch',
+            'Shopware_Console_Add_Command'           => 'onStartDispatch',
         ];
     }
 

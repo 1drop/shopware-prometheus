@@ -16,7 +16,10 @@
         "jimdo/prometheus_client_php": "0.9.*",
         "composer/installers": "~1.6"
     },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "2.9.*"
+    },
     "scripts": {
-        "test": "phpunit -c tests/"
+        "codestyle": "php-cs-fixer fix"
     }
 }
